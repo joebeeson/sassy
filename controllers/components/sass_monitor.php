@@ -82,9 +82,9 @@
 		 * array represents the current source file and the value is where the 
 		 * source should be compiled to.
 		 * @return array
-		 * @access private
+		 * @access protected
 		 */
-		private function _getEligibleFiles() {
+		protected function _getEligibleFiles() {
 			$return = array();
 			foreach ($this->_getMonitorFolders() as $from=>$to) {
 				$from = new Folder($from);
@@ -104,7 +104,7 @@
 		 * folder we should monitor and the value is the folder we should write
 		 * the parsed files to.
 		 */
-		private function _getMonitorFolders() {
+		protected function _getMonitorFolders() {
 			$return  = array();
 			$folders = (is_null(Configure::read(self::RECOMPILE_FOLDERS))
 				? array(CSS) 
@@ -130,7 +130,7 @@
 		 * @param string $file
 		 * @return mixed
 		 */
-		private function _parseFile($file = '') {
+		protected function _parseFile($file = '') {
 			$return = false;
 			if (file_exists($file)) {
 				try {
@@ -147,9 +147,9 @@
 		 * given style and options. Defaults to the 'expanded' style.
 		 * @param string $style
 		 * @return SassRenderer
-		 * @access private
+		 * @access protected
 		 */
-		private function _getParser($style = 'expanded', $options = array()) {
+		protected function _getParser($style = 'expanded', $options = array()) {
 			$cache = 'parser' . md5(serialize(func_get_args()));
 			if (!isset($this->cache[$cache])) {
 				if (!class_exists('SassParser')) {
@@ -165,9 +165,9 @@
 		/**
 		 * Convenience method for returning our Sass vendor library path.
 		 * @return string
-		 * @access private
+		 * @access protected
 		 */
-		private function _sassPath() {
+		protected function _sassPath() {
 			return App::pluginPath('sassy') . 'vendors' . DS . 'sass' . DS;
 		}
 		
@@ -175,9 +175,9 @@
 		 * Convenience method for determining if we should execute by randomly
 		 * picking a number.
 		 * @return boolean
-		 * @access private
+		 * @access protected
 		 */
-		private function _shouldRun() {
+		protected function _shouldRun() {
 			return array_key_exists(
 				$this->_recompileParameter(), 
 				$this->controller->params['named']
@@ -188,9 +188,9 @@
 		 * Convenience method for retrieving the configuration for our recompile
 		 * named parameter we should watch for.
 		 * @return mixed
-		 * @access private
+		 * @access protected
 		 */
-		private function _recompileParameter() {
+		protected function _recompileParameter() {
 			if (!$this->_hasRecompileParameter()) {
 				return self::RECOMPILE_PARAMETER_DEFAULT;
 			} else {
@@ -202,9 +202,9 @@
 		 * Convenience method for retrieving our recompile percentage from the
 		 * configuration, if it's set, or falls back to our default.
 		 * @return integer
-		 * @access private
+		 * @access protected
 		 */
-		private function _recompilePercentage() {
+		protected function _recompilePercentage() {
 			if (!$this->_hasRecompilePercentage()) {
 				return self::RECOMPILE_PERCENTAGE_DEFAULT;
 			} else {
@@ -216,9 +216,9 @@
 		 * Convenience method for checking if we have a configuration setting
 		 * for the RECOMPILE_PARAMETER value.
 		 * @return boolean
-		 * @access private
+		 * @access protected
 		 */
-		private function _hasRecompileParameter() {
+		protected function _hasRecompileParameter() {
 			return !is_null(Configure::read(self::RECOMPILE_PARAMETER));
 		}
 		
@@ -226,9 +226,9 @@
 		 * Convenience method for checking if we have a configuration setting
 		 * for the RECOMPILE_PERCENTAGE value.
 		 * @return boolean
-		 * @access private
+		 * @access protected
 		 */
-		private function _hasRecompilePercentage() {
+		protected function _hasRecompilePercentage() {
 			return !is_null(Configure::read(self::RECOMPILE_PERCENTAGE));
 		}
 		
