@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * SassMonitorComponent
+	 * MonitorHelper
 	 * -------------------------------------------------------------------------
 	 * Monitors folders and checks if any Sass files in them are newer than 
 	 * their CSS counterpart and recompiles them if they are.
@@ -16,7 +16,7 @@
 	 * -------------------------------------------------------------------------
 	 * @author Joe Beeson <jbeeson@gmail.com>
 	 */
-	class SassMonitorComponent extends Object {
+	class MonitorHelper extends Helper {
 		
 		/**
 		 * Holds the expected name for our configuration setting which tells us
@@ -61,12 +61,10 @@
 		/**
 		 * Initialization method, executed before the controller's beforeFIlter 
 		 * but after the models have been constructed.
-		 * @param Controller $controller
 		 * @return null
 		 * @access public 
 		 */
-		public function initialize($controller) {
-			$this->controller = $controller;
+		public function beforeRender() {
 			if ($this->_shouldRun()) {
 				foreach ($this->_getEligibleFiles() as $source=>$compile) {
 					file_put_contents(
@@ -180,7 +178,7 @@
 		protected function _shouldRun() {
 			return array_key_exists(
 				$this->_recompileParameter(), 
-				$this->controller->params['named']
+				$this->params['named']
 			) or (mt_rand(1, 100) <= $this->_recompilePercentage());
 		}
 		
