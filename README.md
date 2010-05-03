@@ -25,7 +25,7 @@ This plugin monitors folders for [Sass][1] files and compiles them into CSS. It 
 
 ## Usage
 
-On any given request the `SassMonitor` component will determine if it should execute based off the `Sassy.Recompile.Percentage` value. It will check every folder in the `Sassy.Recompile.Folders` value for any files that end in `.sass` and are newer than their `.css` counterpart. If any are found it will parse the file and write the corresponding `.css` file. 
+Start making Sass files and make sure their extension is `.sass` -- that's it. The component will periodically check for any files that need (re)compiling and handle everything for you.
 
   [1]: http://sass-lang.com/
   [2]: http://code.google.com/p/phamlp/
