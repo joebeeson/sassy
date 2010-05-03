@@ -19,7 +19,7 @@ Sassy plugin monitors folders for [Sass][1] files and compiles them into CSS.
 * **`Sassy.Recompile.Parameter`** - The named parameter to look for in the request that will force a recompile check. This defaults to `sassy`
 
 * **`Sassy.Recompile.Folders`** - An array of folders to monitor for Sass files. 
- This defaults to your webroot's CSS folder.
+ This defaults to `app/webroot/css`
 
 ## Usage
 
