@@ -66,12 +66,21 @@
 		 */
 		public function beforeRender() {
 			if ($this->_shouldRun()) {
-				foreach ($this->_getEligibleFiles() as $source=>$compile) {
-					file_put_contents(
-						$compile,
-						$this->_parseFile($source)
-					);
-				}
+				$this->recompile();
+			}
+		}
+		
+		/**
+		 * Checks all of our folders for any files that need recompiling.
+		 * @return null
+		 * @access public
+		 */
+		public function recompile() {
+			foreach ($this->_getEligibleFiles() as $source=>$compile) {
+				file_put_contents(
+					$compile,
+					$this->_parseFile($source)
+				);
 			}
 		}
 		
