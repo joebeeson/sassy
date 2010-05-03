@@ -14,7 +14,7 @@ Sassy plugin monitors folders for [Sass][1] files and compiles them into CSS.
 
 ## Configuration
 
-* **`Sassy.Recompile.Percentage`** - The chance percentage that each request has of invoking a check for updated files. Valid values are an integer between 0 and 100. This defaults to `5`
+* **`Sassy.Recompile.Percentage`** - The chance percentage that each request has of invoking a check for updated files. Valid values are an integer between 0 and 100. This defaults to `10`
 
 * **`Sassy.Recompile.Parameter`** - The named parameter to look for in the request that will force a recompile check. This defaults to `sassy`
 
