@@ -10,9 +10,9 @@ This plugin monitors folders for [Sass][1] files and compiles them into CSS. It 
 
         $ cd /path/to/your/app/plugins && git clone git://github.com/joebeeson/sassy.git
 
-* Add the component to your `AppController`
+* Add the helper to your `AppController`
 
-        public $components = array('Sassy.SassMonitor');
+        public $helpers = array('Sassy.Monitor');
 
 ## Configuration
 
@@ -25,7 +25,7 @@ This plugin monitors folders for [Sass][1] files and compiles them into CSS. It 
 
 ## Usage
 
-Start making Sass files and make sure their extension is `.sass` -- that's it. The component will periodically check for any files that need (re)compiling and handle everything for you.
+Start making Sass files and make sure their extension is `.sass` -- that's it. The helper will periodically check for any files that need (re)compiling and handle everything for you.
 
   [1]: http://sass-lang.com/
   [2]: http://code.google.com/p/phamlp/
