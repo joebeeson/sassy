@@ -59,8 +59,7 @@
 		const RECOMPILE_FOLDERS = 'Sassy.Recompile.Folders';
 		
 		/**
-		 * Initialization method, executed before the controller's beforeFIlter 
-		 * but after the models have been constructed.
+		 * Before render method, executed before the view is rendered.
 		 * @return null
 		 * @access public 
 		 */
