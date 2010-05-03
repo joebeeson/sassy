@@ -1,6 +1,6 @@
 # Sassy Plugin for CakePHP 1.3+
 
-Sassy plugin monitors folders for [Sass][1] files and compiles them into CSS.
+Sassy plugin monitors folders for [Sass][1] files and compiles them into CSS. It uses PHamlP[2] to perform the compiling.
 
 ## Installation
 
@@ -26,3 +26,4 @@ Sassy plugin monitors folders for [Sass][1] files and compiles them into CSS.
 On any given request the `SassMonitor` component will determine if it should execute based off the `Sassy.Recompile.Percentage` value. It will check every folder in the `Sassy.Recompile.Folders` value for any files that end in `.sass` and are newer than their `.css` counterpart. If any are found it will parse the file and write the corresponding `.css` file. 
 
   [1]: http://sass-lang.com/
+  [2]: http://code.google.com/p/phamlp/
