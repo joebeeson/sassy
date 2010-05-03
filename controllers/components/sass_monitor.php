@@ -3,8 +3,8 @@
 	/**
 	 * SassMonitorComponent
 	 * -------------------------------------------------------------------------
-	 * Monitors the modified date for a SASS file and if it is newer than its
-	 * compiled form, we will recompile it automatically.
+	 * Monitors folders and checks if any Sass files in them are newer than 
+	 * their CSS counterpart and recompiles them if they are.
 	 * 
 	 * To try and keep down our overhead we only execute on a percentage of the
 	 * requests. This defaults to 10% but can be changed by setting the value of
