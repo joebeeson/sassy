@@ -16,12 +16,15 @@ This plugin monitors folders for [Sass][1] files and compiles them into CSS. It 
 
 ## Configuration
 
-* **`Sassy.Recompile.Percentage`** - The chance percentage that each request has of invoking a check for updated files. Valid values are an integer between 0 and 100. This defaults to `10`
+* **`Sassy.Recompile.Percentage`** - The chance percentage that each request has of invoking a check for updated files. Valid values are an integer between 0 and 100. This defaults to `10`. If you want to handle the compiling manually through the recompile parameter, you should set this to `0`.
 
 * **`Sassy.Recompile.Parameter`** - The named parameter to look for in the request that will force a recompile check. This defaults to `sassy`
 
-* **`Sassy.Recompile.Folders`** - An array of folders to monitor for Sass files. 
- This defaults to `app/webroot/css`
+* **`Sassy.Recompile.Folders`** - An array of folders to monitor for Sass files. This defaults to `app/webroot/css`. By using an associative array you can tell the helper to save the compiled source to a different folder.
+
+       Configure::write('Sassy.Recompile.Folders', array(
+           '/look/for/sass/files/here' => '/then/save/the/css/file/here'
+       );
 
 ## Usage
 

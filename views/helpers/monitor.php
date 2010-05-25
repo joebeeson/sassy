@@ -2,22 +2,12 @@
 
 	/**
 	 * MonitorHelper
-	 * -------------------------------------------------------------------------
-	 * Monitors folders and checks if any Sass files in them are newer than 
+	 * Monitors folders and checks if any Sass files in them are newer than
 	 * their CSS counterpart and recompiles them if they are.
-	 * 
-	 * To try and keep down our overhead we only execute on a percentage of the
-	 * requests. This defaults to 10% but can be changed by setting the value of
-	 * 'Sassy.Recompile.Percentage' in your configuration.
-	 * 
-	 * We will force a regeneration if a named parameter that matches the value
-	 * for the 'Sassy.Recompile.Parameter' configuration is seen. If this value
-	 * isn't set we will bypass that functionality entirely.
-	 * -------------------------------------------------------------------------
 	 * @author Joe Beeson <jbeeson@gmail.com>
 	 */
 	class MonitorHelper extends Helper {
-		
+
 		/**
 		 * Holds the expected name for our configuration setting which tells us
 		 * our probability for executing a recompile check.
@@ -25,7 +15,7 @@
 		 * @const
 		 */
 		const RECOMPILE_PERCENTAGE = 'Sassy.Recompile.Percentage';
-		
+
 		/**
 		 * Holds our default recompile percentage if no configuration has been
 		 * set for us.
@@ -33,7 +23,7 @@
 		 * @const
 		 */
 		const RECOMPILE_PERCENTAGE_DEFAULT = 10;
-		
+
 		/**
 		 * Holds the expected name for our named parameter to monitor which will
 		 * force a recompile if it is passed in a request.
@@ -41,7 +31,7 @@
 		 * @const
 		 */
 		const RECOMPILE_PARAMETER = 'Sassy.Recompile.Parameter';
-		
+
 		/**
 		 * Holds our default recompile parameter if no configuration has been set
 		 * for us already.
@@ -49,7 +39,7 @@
 		 * @const
 		 */
 		const RECOMPILE_PARAMETER_DEFAULT = 'sassy';
-		
+
 		/**
 		 * Holds the expected name for our configuration option for which folders
 		 * we should be watching for Sass files.
@@ -57,18 +47,18 @@
 		 * @const
 		 */
 		const RECOMPILE_FOLDERS = 'Sassy.Recompile.Folders';
-		
+
 		/**
 		 * Before render method, executed before the view is rendered.
 		 * @return null
-		 * @access public 
+		 * @access public
 		 */
 		public function beforeRender() {
 			if ($this->_shouldRun()) {
 				$this->recompile();
 			}
 		}
-		
+
 		/**
 		 * Checks all of our folders for any files that need recompiling.
 		 * @return null
@@ -82,10 +72,10 @@
 				);
 			}
 		}
-		
+
 		/**
 		 * Returns an array of files that are due for recompiling. The key of the
-		 * array represents the current source file and the value is where the 
+		 * array represents the current source file and the value is where the
 		 * source should be compiled to.
 		 * @return array
 		 * @access protected
@@ -104,7 +94,7 @@
 			}
 			return $return;
 		}
-		
+
 		/**
 		 * Returns an array of folders that are to be monitored. Our key is the
 		 * folder we should monitor and the value is the folder we should write
@@ -113,7 +103,7 @@
 		protected function _getMonitorFolders() {
 			$return  = array();
 			$folders = (is_null(Configure::read(self::RECOMPILE_FOLDERS))
-				? array(CSS) 
+				? array(CSS)
 				: Configure::read(self::RECOMPILE_FOLDERS)
 			);
 			$folders = array_flip($folders);
@@ -128,7 +118,7 @@
 			}
 			return $return;
 		}
-		
+
 		/**
 		 * Parses the passed $file and returns the compiled CSS. Will catch any
 		 * errors thrown by the SassParser -- if one occurs we will return a
@@ -147,7 +137,7 @@
 			}
 			return $return;
 		}
-		
+
 		/**
 		 * Convenience method for retrieving a new SassParser instance with the
 		 * given style and options. Defaults to the 'expanded' style.
@@ -167,7 +157,7 @@
 			}
 			return $this->cache[$cache];
 		}
-		
+
 		/**
 		 * Convenience method for returning our Sass vendor library path.
 		 * @return string
@@ -176,7 +166,7 @@
 		protected function _sassPath() {
 			return App::pluginPath('sassy') . 'vendors' . DS . 'sass' . DS;
 		}
-		
+
 		/**
 		 * Convenience method for determining if we should execute by randomly
 		 * picking a number.
@@ -185,11 +175,11 @@
 		 */
 		protected function _shouldRun() {
 			return array_key_exists(
-				$this->_recompileParameter(), 
+				$this->_recompileParameter(),
 				$this->params['named']
 			) or (mt_rand(1, 100) <= $this->_recompilePercentage());
 		}
-		
+
 		/**
 		 * Convenience method for retrieving the configuration for our recompile
 		 * named parameter we should watch for.
@@ -203,7 +193,7 @@
 				return Configure::read(self::RECOMPILE_PARAMETER);
 			}
 		}
-		
+
 		/**
 		 * Convenience method for retrieving our recompile percentage from the
 		 * configuration, if it's set, or falls back to our default.
@@ -217,7 +207,7 @@
 				return min(100, max(0, Configure::read(self::RECOMPILE_PERCENTAGE)));
 			}
 		}
-		
+
 		/**
 		 * Convenience method for checking if we have a configuration setting
 		 * for the RECOMPILE_PARAMETER value.
@@ -227,7 +217,7 @@
 		protected function _hasRecompileParameter() {
 			return !is_null(Configure::read(self::RECOMPILE_PARAMETER));
 		}
-		
+
 		/**
 		 * Convenience method for checking if we have a configuration setting
 		 * for the RECOMPILE_PERCENTAGE value.
@@ -237,5 +227,5 @@
 		protected function _hasRecompilePercentage() {
 			return !is_null(Configure::read(self::RECOMPILE_PERCENTAGE));
 		}
-		
+
 	}
