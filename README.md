@@ -22,9 +22,9 @@ This plugin monitors folders for [Sass][1] files and compiles them into CSS. It 
 
 * **`Sassy.Recompile.Folders`** - An array of folders to monitor for Sass files. This defaults to `app/webroot/css`. By using an associative array you can tell the helper to save the compiled source to a different folder.
 
-       Configure::write('Sassy.Recompile.Folders', array(
-           '/look/for/sass/files/here' => '/then/save/the/css/file/here'
-       );
+         Configure::write('Sassy.Recompile.Folders', array(
+             '/look/for/sass/files/here' => '/then/save/the/css/file/here'
+         );
 
 ## Usage
 
