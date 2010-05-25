@@ -111,8 +111,12 @@
 				if (substr($to, -1) != DS) {
 					$to .= DS;
 				}
-				if (substr($from, -1) != DS) {
-					$from .= DS;
+				if (is_numeric($from)) {
+					$from = $to;
+				} else {
+					if (substr($from, -1) != DS) {
+						$from .= DS;
+					}
 				}
 				$return[$from] = $to;
 			}
